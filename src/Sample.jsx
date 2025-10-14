@@ -31,7 +31,7 @@ const Sample = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ textAlign: 'center' }} className='bg-dark'>
       <h2>Roulette Wheel</h2>
       <input
         type="number"
