@@ -22,17 +22,30 @@ const Timer = () => {
 
   const handleClick = () => {
     if (!running) {
-      // Start the timer
+      // Start timer
       setStartTime(Date.now() - elapsedTime);
       setRunning(true);
     } else {
-      // Stop and save time
-      //setRunning(false);
+      // Save current time
       setSavedTimes((prev) => [...prev, elapsedTime]);
     }
-    
-    if(savedTimes.length >= 2) setRunning(false)
+
+    // Stop after 3 clicks (3 saved times)
+    if (savedTimes.length >= 2) {
+      setRunning(false);
+    }
   };
+
+  // Function to calculate time differences
+  const getTimeDifferences = () => {
+    let diffs = [];
+    for (let i = 1; i < savedTimes.length; i++) {
+      diffs.push(savedTimes[i] - savedTimes[i - 1]);
+    }
+    return diffs;
+  };
+
+  const differences = getTimeDifferences();
 
   // Format milliseconds to mm:ss:ms
   const formatTime = (ms) => {
@@ -57,7 +70,14 @@ const Timer = () => {
           <h2 className="font-semibold">Saved Times:</h2>
           <ul>
             {savedTimes.map((time, index) => (
-              <li key={index}>{formatTime(time)}</li>
+              <li key={index}>
+                {formatTime(time)}
+                {index > 0 && (
+                  <span className="ml-4 text-gray-500">
+                    (+{formatTime(differences[index - 1])})
+                  </span>
+                )}
+              </li>
             ))}
           </ul>
         </div>
