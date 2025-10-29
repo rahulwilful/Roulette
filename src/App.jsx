@@ -3,6 +3,7 @@ import { useState } from 'react'
 import './App.css'
 import Sample from './sample'
 import Timer from './Timer'
+import NumberDashboard from './components/NumberDashboard'
 
 
 function App() {
@@ -10,7 +11,8 @@ function App() {
 
   return (
     <>
-    <Timer />
+    <NumberDashboard />
+   {/*  <Timer /> */}
 {/*       <Sample />
  */}    </>
   )
