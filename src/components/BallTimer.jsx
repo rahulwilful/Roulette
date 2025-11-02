@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Container from "./Container";
 
 const BallTimer = () => {
   const [startTime, setStartTime] = useState(null);
@@ -58,10 +59,15 @@ const BallTimer = () => {
   };
 
   return (
+    <>
+    <Container  h100 px={0} py={0}>
+
+
     <div
       onClick={handleClick}
-      className="flex border border-secondary  border-5 flex-col items-center justify-center h-screen cursor-pointer select-none"
-    >
+      className="d-flex align-items-center justify-content-center flex-column h-100 w-100  flex-col  h-screen cursor-pointer select-none"
+      >
+              <div className='border border-3 border-primary w-75 rounded-pill mb-3' />
       <h1 className="text-4xl font-bold mb-4">Timer</h1>
       <p className="text-2xl">{formatTime(elapsedTime)}</p>
 
@@ -83,6 +89,8 @@ const BallTimer = () => {
         </div>
       )}
     </div>
+            </Container>
+      </>
   );
 };
 

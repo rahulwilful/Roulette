@@ -1,3 +1,10 @@
 .pointer {
   cursor: pointer;
 }
+.body{
+  height: 100vh;
+}
+
+.tempBorder {
+  border: 5px solid red;
+}

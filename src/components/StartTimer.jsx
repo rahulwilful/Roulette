@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Container from './Container';
 
 const StartTimer = () => {
   const [time, setTime] = useState({ hr: 0, min: 0, sec: 0, milli: 0 });
@@ -41,11 +42,16 @@ const StartTimer = () => {
  
    return (
      <>
-       <div className="container">
+     <Container h100  px={0} py={0}>
+
+       <div className=" border h-100 w-100 d-flex justify-content-center align-items-center flex-column border-5 ">
+        <div className='border border-3 border-success w-75 rounded-pill mb-3' />
+
+       
          <h1>
            {time.hr + " : " + time.min + " : " + time.sec + " : " + time.milli}
          </h1>
-         <div className="buttons d-flex gap-5">
+         <div className="buttons  d-flex gap-5">
            <button className="start btn-outline-success btn" onClick={start}>
              Start
            </button>
@@ -57,6 +63,7 @@ const StartTimer = () => {
            </button>
          </div>
        </div>
+     </Container>
      </>
    );
 }

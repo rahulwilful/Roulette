@@ -1,33 +1,50 @@
-import React, { useState } from 'react'
-import { RouletteNumbers, RouletteNumbersSorted } from '../constansts/rouletteNumbers'
-import Container from './Container'
+import React, { useState } from "react";
+import {
+  RouletteNumbers,
+  RouletteNumbersSorted,
+} from "../constansts/rouletteNumbers";
+import Container from "./Container";
 
-const NumberDashboard = () => {
-    const numbers = RouletteNumbersSorted
+const NumberDashboard = ({getStartingNUmber}) => {
+  const [numbers, setNumbers] = useState(RouletteNumbersSorted);
 
-    const SelectNumber = (selectedNumber) => {
-        console.log(selectedNumber)
-    }
+  const SelectNumber = (selectedNumber) => {
+    console.log(selectedNumber);
+  };
 
-    return (
-        <>
-            <Container py={5}>
+  const toggleNumberFormat = () => {
+    if (numbers == RouletteNumbersSorted) setNumbers(RouletteNumbers);
+    else setNumbers(RouletteNumbersSorted);
+  };
 
-                <div className='container '>
-                    <div className='row '>
-                        {
-                            numbers.map((number, i) => (
-                                <button key={i} onClick={()=>{SelectNumber(number.number)}} className='d-flex col-2 border pointer btn justify-content-center fw-medium text-light fs-3 ' style={{ backgroundColor: number.color }}>
-                                    {number.number}
-                                </button>
-                            )
-                            )
-                        }
-                    </div>
-                </div>
-            </Container>
-        </>
-    )
-}
+  return (
+    <>
+      <Container h100 center  py={4}>
+      
+        <div className="container ">
+              <div className={`mb-2`}>
+          <i onClick={toggleNumberFormat} className="bi fs-1 bi-sliders pointer">
+            {" "}
+          </i>
+        </div>
+          <div className="row ">
+            {numbers.map((number, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  getStartingNUmber(number.number);
+                }}
+                className="d-flex col-2 border pointer btn justify-content-center fw-medium text-light fs-3 "
+                style={{ backgroundColor: number.color }}
+              >
+                {number.number}
+              </button>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </>
+  );
+};
 
-export default NumberDashboard
+export default NumberDashboard;
